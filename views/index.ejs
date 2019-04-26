@@ -118,7 +118,26 @@
 <script>
 	socket = io({transports: ['websocket'], upgrade: false}).connect();
 
-
+	socket.on("modStats", (data) => {
+		blocks = document.getElementsByClassName("block");
+		console.log(blocks.length);
+		// blocks.forEach((element, index)=>{
+		// 	if(index > 0){
+		// 		element.appendChild(statsImage(data[index], false));
+		// 	}
+		// })
+		// index = 0;
+		// for (let index = 0; index < 3; index++){
+		// 	if(index > 0){
+		// 		blocks[index].appendChild(statsImage(data[1-(index-1)], false));
+		// 	}
+		// }
+		for(let index = blocks.length -1; index > 0; index--){
+			blocks[index].appendChild(statsImage(data[blocks.length-1-index]))
+			
+		}
+		
+	})
 
 	var width, height, previewHeight;
 	var root = document.getElementById('demo');
@@ -178,6 +197,7 @@
 
 	function processImage(imagePath, prepend) {
 		var element = document.createElement('div');
+		console.log(element)
 		element.className = 'block';
 
 		if (prepend) {
@@ -187,27 +207,28 @@
 		}
 
 		loadImage(imagePath, function (img) {
+
 			var start = new Date().getTime();
 			var stats = Colorgram.extract(img);
-			var modifiedStats = [[255,255,255], [0,0,0]]
+			//var modifiedStats = [[255,255,255], [0,0,0]]
 			let singleImageData = {
 				stats: stats
 			}
-			console.log(stats)
+			// console.log(stats)
 			socket.emit("singleImage", singleImageData);
-			socket.on("modStats", (data) => {
-				modifiedStats = data.mappedStats[0];
-				// console.log(modifiedStats);
-				
-				var elapsed = new Date().getTime() - start;
-				
-				element.appendChild(img.canvas);
-				element.appendChild(statsImage(stats, false));
 
-				element.appendChild(statsImage(Colorgram.sortByHsl(stats), true));
-				element.appendChild(statsImage(modifiedStats, false));
-				code('Elapsed time: ' + elapsed + 'ms', element);
-				});
+			//modifiedStats = data.mappedStats;
+			// console.log(modifiedStats);
+			
+			var elapsed = new Date().getTime() - start;
+			
+			element.appendChild(img.canvas);
+			element.appendChild(statsImage(stats, false));
+
+			element.appendChild(statsImage(Colorgram.sortByHsl(stats), true));
+			//element.appendChild(statsImage(modifiedStats, false));
+			code('Elapsed time: ' + elapsed + 'ms', element);
+
 
 				
 

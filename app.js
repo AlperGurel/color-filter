@@ -27,8 +27,8 @@ server.listen(port, () => console.log(`Port is running on port ${port}`));
 io.sockets.on('connection',  (socket) => {
     console.log("We have a new client: " + socket.id);
     let length;
-    let stats = []
-    let mappedStats = []
+    let stats = [] //this will hold all loaded images
+    let mappedStats = [] //this will hold all mapped images
     socket.on("init", (data)=>{
         console.log(data)
         length = data.length;
@@ -37,24 +37,19 @@ io.sockets.on('connection',  (socket) => {
 
     });
     socket.on("singleImage", (data) => {
-        // console.log(data.stats);
+
         stats.push(data.stats);
 
-        // let map_ = colorMap.mapColor(data.stats);
-        let map_ = colorMap.mapColor(data.stats.filter((item)=>{
-           return item[3] > 0.01;
-        //console.log(item[3]);
-        }))
-        
-        mappedStats.push(map_);
+
         if(length && stats.length == length){
-            console.log(stats);
-            // console.log(data.stats);
+            stats.forEach((img) => {
+                let map_ = colorMap.mapColor(img.filter((item)=>{
+                    return item[3] > 0.01;
+                }))
+                mappedStats.push(map_);
+            });
             console.log(mappedStats);
-            const modSt = {
-                mappedStats: mappedStats
-            }
-            socket.emit("modStats", modSt)
+            socket.emit("modStats", mappedStats);
         }
     });
   });
