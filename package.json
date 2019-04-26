@@ -7,6 +7,8 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "get-image-colors": "^2.0.0",
+    "hex-to-hsl": "^1.0.2",
+    "rgb-to-hsl": "0.0.3",
     "socket.io": "^2.2.0"
   },
   "devDependencies": {},

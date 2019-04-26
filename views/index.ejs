@@ -168,6 +168,7 @@
 		return canvas;
 	}
 
+
 	function code(data, root) {
 		var element = document.createElement('div');
 		element.className = 'fnc right';
@@ -188,13 +189,28 @@
 		loadImage(imagePath, function (img) {
 			var start = new Date().getTime();
 			var stats = Colorgram.extract(img);
-			var elapsed = new Date().getTime() - start;
-			
-			element.appendChild(img.canvas);
-			element.appendChild(statsImage(stats, false));
+			var modifiedStats = [[255,255,255], [0,0,0]]
+			let singleImageData = {
+				stats: stats
+			}
+			console.log(stats)
+			socket.emit("singleImage", singleImageData);
+			socket.on("modStats", (data) => {
+				modifiedStats = data.mappedStats[0];
+				// console.log(modifiedStats);
+				
+				var elapsed = new Date().getTime() - start;
+				
+				element.appendChild(img.canvas);
+				element.appendChild(statsImage(stats, false));
 
-			element.appendChild(statsImage(Colorgram.sortByHsl(stats), true));
-			code('Elapsed time: ' + elapsed + 'ms', element);
+				element.appendChild(statsImage(Colorgram.sortByHsl(stats), true));
+				element.appendChild(statsImage(modifiedStats, false));
+				code('Elapsed time: ' + elapsed + 'ms', element);
+				});
+
+				
+
 		})
 	}
 
@@ -206,7 +222,11 @@
 		}, false);
 
 		area.addEventListener('drop', function (evt) {
-			console.log(evt.dataTransfer.files.length)
+			console.log(evt.dataTransfer.files.length);
+			const initData = {
+				length: evt.dataTransfer.files.length
+			}
+			socket.emit("init", initData);
 			//send file length and init process
 			for (var i = 0; i < evt.dataTransfer.files.length; i++) {
 				
