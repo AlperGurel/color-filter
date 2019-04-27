@@ -7,7 +7,7 @@ const colorMap = require("./public/mapColor")
 var excel = require('excel4node');
 
 const indexRouter = require("./routes/index");
-
+const aiRouter = require("./routes/ai");
 
 const port = 3000;
 const app = new express();
@@ -21,8 +21,9 @@ app.use(express.static(path.join(__dirname, "exports")));
 //app.use("/node_modules",express.static("node_modules/"));
 app.use(express.static(path.join(__dirname, "node_modules")));
 
-
+//use it with a blank slash and routers
 app.use("/", indexRouter);
+app.use("/", aiRouter);
 
 server.listen(port, () => console.log(`Port is running on port ${port}`));
 
@@ -36,19 +37,15 @@ io.sockets.on('connection',  (socket) => {
     socket.on("init", (data)=>{
 
         length = data.length;
-        for(let i=0; i< data.files.length; i++){
-            excelNames.push(data.files[i].name);
-        }
+
             
 
-        //process start
-        console.log(excelNames)
 
     });
     socket.on("singleImage", (data) => {
 
         stats.push(data.stats);
-        // excelNames.push(data.filename);
+        excelNames.push(data.filename);
 
         if(length && stats.length == length){
             stats.forEach((img) => {

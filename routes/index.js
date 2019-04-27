@@ -2,7 +2,8 @@ var express = require("express");
 var router = express.Router();
 
 
-router.get("/", (req, res) => {
+router.get('/color', (req, res) => {
+    console.log("req coming")
     res.render("index", {
         title: "Express"
     });

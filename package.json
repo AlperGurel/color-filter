@@ -8,9 +8,12 @@
     "excel4node": "^1.7.1",
     "express": "^4.16.4",
     "get-image-colors": "^2.0.0",
+    "hex-rgb": "^4.1.0",
     "hex-to-hsl": "^1.0.2",
+    "randomcolor": "^0.5.4",
     "rgb-to-hsl": "0.0.3",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.2.0",
+    "synaptic": "^1.1.4"
   },
   "devDependencies": {},
   "scripts": {
