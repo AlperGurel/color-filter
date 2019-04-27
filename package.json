@@ -5,6 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "ejs": "^2.6.1",
+    "excel4node": "^1.7.1",
     "express": "^4.16.4",
     "get-image-colors": "^2.0.0",
     "hex-to-hsl": "^1.0.2",
