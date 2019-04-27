@@ -4,41 +4,85 @@ var randomColor = require("randomcolor")
 var synaptic = require("synaptic")
 var  hexRgb = require('hex-rgb');
 
-const COLORCOUNT = 30;
+const COLORCOUNT = 20;
 
 colorDefinitions = [
     {
-        hue: "red",
+        hue: "#f34336", //red
         count: COLORCOUNT
     },
     
      {
-        hue: "green",
+        hue: "#4CAF50", //green
         count: COLORCOUNT
     },
     
     {
-        hue: "blue",
+        hue: "#2196F2", //blue
         count: COLORCOUNT
     },
 
     {
-        hue: "pink",
+        hue: "#E81E63", //pink
         count: COLORCOUNT
     },
 
     {
-        hue: "monochrome",
+        hue: "black", //black
+        count: COLORCOUNT
+    },
+
+    {
+        hue: "white", //white
+        count: COLORCOUNT
+    },
+
+    {
+        hue: "#673AB7", //mor
+        count: COLORCOUNT
+    },
+
+    {
+        hue: "#795548", //brown
+        count: COLORCOUNT
+    },
+
+    {
+        hue: "#FE9800", //orange
+        count: COLORCOUNT
+    },
+
+    {
+        hue: "#FEEA3B", //yellow
         count: COLORCOUNT
     }
-
 ]
 
 allColors = []
 
+// colorDefinitions.forEach(element => {
+//     let cl = element.hue
+//     let content = randomColor(element);
+//     color = {
+//         cl: cl,
+//         content: content
+//     }
+//     allColors.push(color);
+// });
+
 colorDefinitions.forEach(element => {
     let cl = element.hue
-    let content = randomColor(element);
+    let content;
+    if(cl === "white"){
+        content  = new Array(COLORCOUNT).fill("#ffffff")
+    }
+    else if(cl === "black"){
+        content  = new Array(COLORCOUNT).fill("#000000")
+    }
+    else{
+        content = randomColor(element);
+    }
+    
     color = {
         cl: cl,
         content: content
@@ -51,22 +95,14 @@ colorDefinitions.forEach(element => {
 let trainingData = [];
 let outputData = [];
 
-allColors.forEach((element) => {
+allColors.forEach((element, index) => {
     element.content.forEach((color) => {
         let rgbColor = hexRgb(color);
         let tempTrain = [ rgbColor.red / 255, rgbColor.green / 255, rgbColor.blue / 255, rgbColor.alpha];
         trainingData.push(tempTrain);
-        let tempOut ;
-        if(element.cl === "red")
-            tempOut = [1,0,0,0,0];
-        else if (element.cl === "green")
-            tempOut = [0,1,0,0,0];
-        else if (element.cl === "blue")
-            tempOut = [0,0,1,0,0];
-        else if (element.cl === "pink")
-            tempOut = [0,0,0,1,0];
-        else
-            tempOut = [0,0,0,0,1];
+        let tempOut = new Array(colorDefinitions.length).fill(0);
+        tempOut[index] = 1;
+
         outputData.push(tempOut);
     })
 });
@@ -74,7 +110,7 @@ allColors.forEach((element) => {
 shuffle(trainingData, outputData);
 
 
-// Neural Network Definitions
+//Neural Network Definitions
 var Neuron = synaptic.Neuron,
 	Layer = synaptic.Layer,
 	Network = synaptic.Network,
@@ -84,7 +120,7 @@ var Neuron = synaptic.Neuron,
 //Layers
 var inputLayer = new Layer(4);
 var hiddenLayer = new Layer(6);
-var outputLayer = new Layer(5);
+var outputLayer = new Layer(10);
 
 //Flattening the layers
 inputLayer.project(hiddenLayer);
@@ -119,11 +155,12 @@ for (var i = 0; i < 200000; i++)
 for(var i =0; i< 10; i++){
     console.log("Start");
 
-    let rgbColor = hexRgb(randomColor({hue: "monochrome", count: 1})[0]);
+    let rgbColor = hexRgb(randomColor({hue: "random", count: 1})[0]);
     let tempTrain = [ rgbColor.red / 255, rgbColor.green / 255, rgbColor.blue / 255, rgbColor.alpha];
+    let green = [0.207, 0.819, 0.796, 1]
     console.log("NN Answer");
     console.log(myNetwork.activate(tempTrain));
-    console.log("Giren renk "+ tempTrain);
+    console.log("Giren renk "+ tempTrain[0]*255 + " " + tempTrain[1]*255 + " " + tempTrain[2]*255);
     console.log("End");
 }
 
