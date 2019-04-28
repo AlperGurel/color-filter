@@ -15,7 +15,7 @@ var Colorgram;
     })(Colorgram.Channels || (Colorgram.Channels = {}));
     var Channels = Colorgram.Channels;
     function extract(img, top) {
-        if (top === void 0) { top = 20; }
+        if (top === void 0) { top = 15; }
         var samples = sample(img);
         var used = pickUsed(samples, samples.length / 4);
         sortUsed(used);

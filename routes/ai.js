@@ -11,35 +11,37 @@ const grayList = [
 [71, 73, 79],
 [145, 145, 145],
 [76, 73, 73],
-[193, 191, 191],
+// [193, 191, 191],
 [86, 86, 86],
 [155, 155, 155],
-[109, 109, 108],
-[53, 53, 53],
-[68, 68, 68],
-[135, 129, 129],
-[168, 164, 164],
-[201, 197, 197],
-[219, 212, 212],
-[114, 112, 112],
-[196, 194, 194],
-[224, 222, 222],
-[104, 99, 99],
-[155, 149, 149],
-[204, 199, 199],
-[160, 152, 152],
-[63, 60, 60],
-[102, 98, 98],
-[137, 132, 132],
-[170, 164, 164],
-[114, 110, 110],
-[175, 175, 175],
-[216, 208, 208]
+[109, 109, 108]
+// [53, 53, 53],
+// [68, 68, 68],
+// [135, 129, 129],
+// [168, 164, 164],
+// [201, 197, 197],
+// [219, 212, 212],
+// [114, 112, 112],
+// [196, 194, 194],
+// [224, 222, 222],
+// [104, 99, 99],
+// [155, 149, 149],
+// [204, 199, 199]
+// [160, 152, 152],
+// [63, 60, 60],
+// [102, 98, 98],
+// [137, 132, 132],
+// [170, 164, 164],
+// [114, 110, 110],
+// [175, 175, 175],
+// [216, 208, 208]
 ]
 hexglist = grayList.map(element=>{
 
-    return rgbHex(...element);
+    return "#"+rgbHex(...element);
 })
+
+
 const COLORCOUNT = 50;
 const rgbList = [
 [243, 67, 54],
@@ -87,7 +89,7 @@ colorDefinitions = [
     },
 
     {
-        hue: "#673AB7", //mor
+        hue: "mor", //mor
         count: COLORCOUNT
     },
 
@@ -97,13 +99,13 @@ colorDefinitions = [
     },
 
     {
-        hue: "#FE9800", //orange
+        hue: "orange", //orange
         count: COLORCOUNT
     },
 
 
     {
-        hue: "#FEEA3B", //yellow
+        hue: "yellow", //yellow
         count: COLORCOUNT
     },
     {
@@ -114,6 +116,182 @@ colorDefinitions = [
 
 allColors = []
 
+whiteList = [
+    "#ffffff",
+"#dbd9d9",
+"#e0dede",
+"#d6d6d6",
+"#efe8e8",
+"#f7eaea",
+"#e5d7d7",
+"#f7e8e8",
+"#d8d8d8",
+"#e5e5e5",
+"#fff2f2",
+"#f5f2ff",
+"#f5f2ff",
+"#fff2f8",
+"#fffaf2",
+"#fdfff2",
+"#f8fff2",
+"#f2fff6",
+"#f2fff6",
+"#f2fbff",
+"#f2fbff",
+"#f7f2e8",
+"#f6f7e8",
+"#f2f7e8",
+"#eef7e8",
+"#eaf7e8",
+"#e8f7ec",
+"#e8f7f3",
+"#e8f5f7",
+"#e8eff7",
+"#e8eaf7",
+"#ebe8f7",
+"#f3e8f7",
+"#f7e8ec"
+
+]
+morList = [
+    "#e100ff",
+"#bd00d6",
+"#730082",
+"#9900ad",
+"#51005b",
+"#36003d",
+"#af0dc4",
+"#860c96",
+"#62096d",
+"#6c1077",
+"#8d159b",
+"#7e1f89",
+"#9e1fad",
+"#902e9b",
+"#772d7f",
+"#813889",
+"#8c4893",
+"#bb00ff",
+"#a000db",
+"#8600b7",
+"#68008e",
+"#480063",
+"#b210ef",
+"#910fc1",
+"#780ca0",
+"#580975",
+"#c423ff",
+"#a014a0",
+"#996b99",
+"#965e96",
+"#995499",
+"#9b4a9b",
+"#993d99",
+"#993099",
+"#992499",
+"#8e0c8e",
+"#931693",
+"#960496",
+"#9d00ff",
+"#a81eff",
+"#9b27e5",
+"#8125bc",
+"#6c239b",
+"#5a1f7f"
+
+]
+yellowList = [
+    "#fffa00",
+"#fffa11",
+"#fffa23",
+"#fffa35",
+"#fffa47",
+"#fffa59",
+"#fffa6d",
+"#fffa7f",
+"#fffa91",
+"#fffaa5",
+"#ede11e",
+"#e2d60d",
+"#fff000",
+"#faff00",
+"#faff11",
+"#faff21",
+"#faff32",
+"#faff47",
+"#faff59",
+"#f5f96b",
+"#e0e52b",
+"#eff43d",
+"#faff60",
+"#faff77",
+"#fff600",
+"#fff60c",
+"#fff621",
+"#fff62d",
+"#fff63f",
+"#fff759",
+"#fff768"
+
+]
+orangeList = [
+    "#ff9400",
+"#ff9a0f",
+"#ffa121",
+"#ffab3a",
+"#ffb24c",
+"#ffbc63",
+"#ffc67a",
+"#ffce8e",
+"#ffd6a0",
+"#d87b00",
+"#d67e0a",
+"#d6851b",
+"#d67b1a",
+"#d68126",
+"#d68b3b",
+"#d6924a",
+"#d69755",
+"#c9955e",
+"#ffa100",
+"#ffa814",
+"#ffb02b",
+"#ffb73f",
+"#ffbd51",
+"#ffc363",
+"#ffcc7a",
+"#ff5d00",
+"#ff6811",
+"#ff7526",
+"#ff833d",
+"#ff8e4f",
+"#ff8947",
+"#ff9960",
+"#f49e6e",
+"#ffb68e",
+"#ffb993",
+"#e56520",
+"#e06d2f",
+"#e07a43",
+"#d88152",
+"#d68d66",
+"#d69775",
+"#ff4800",
+"#ff5411",
+"#ff5f21",
+"#ff6b32",
+"#ff7a47",
+"#ff9900",
+"#ffa011",
+"#ffa826",
+"#ffb13d",
+"#ffd182",
+"#ffdca0",
+"#f2c476",
+"#ff8556",
+"#B44321"
+
+]
 redList = [
 "#ea6262",
 "#d65151",
@@ -171,7 +349,39 @@ redList = [
 "#f9403b",
 "#c11b17",
 "#cc0e0a",
-"#e02a11"
+"#e02a11",
+"#aa7070",
+"#d69e9e",
+"#994e4e",
+"#7f2c2c",
+"#723232",
+"#631515",
+"#590b0b",
+"#9b1414",
+"#4f0000",
+"#962822",
+"#ff0d00",
+"#ff362b",
+"#ff4c42",
+"#ff5d54",	
+"#930700",
+"#bf0900",
+"#e50a00",
+"#840500",	
+"#aa1b16",
+"#91312e",
+"#93403e",
+"#a35654",
+"#6b2d2b",
+"#c46060",
+"#e57979",
+"#a03636",
+"#701919",
+"#6d0e0e",
+"#630606",
+"#bf0505",
+"#ef0000",
+"#8e0404",
 ];
 blueList = [
     "#c3f6f7",
@@ -294,7 +504,8 @@ blueList = [
     "#0d10a8",
     "#210ece",
 ]
-greenList = ["#72ff00",
+greenList = [
+    "#72ff00",
 "#5eb716",
 "#7de529",
 "#56b50a",
@@ -415,45 +626,49 @@ greenList = ["#72ff00",
 "#6d7f71",
 "#8daa94",
 "#58665b",
-"#47564a"
-
+"#47564a",
+"#bec400",
+"#9ea303",
+"#8f9313",
+"#92961c",
+"#9da031",
+"#a6aa0d",
+"#b5ba03",
+"#c4c916",
+"#cdd308",
+"#c4c91a",
+"#d8dd30",
+"#545600",
+"#52540a",
+"#545614",
+"#818413",
+"#92960c",
+"#babf24"
 ]
 brownList = [
-    "#75504e",
-    "#704947",
-    "#633e3c",
-    "#603a38",
-    "#4f302e",
-    "#4c2c2a",
-    "#442523",
-    "#4c2724",
+    // "#75504e",
+    // "#704947",
+    // "#633e3c",
+    // "#603a38",
+    // "#4f302e",
+    // "#4c2c2a",
+    // "#442523",
+    // "#4c2724",
     "#3f1e1c",
     "#4c211f",
     "#5b2826",
     "#491b19",
-    "#4f1614",
-    "#44100f",
-    "#3f0a09",
     "#5b2f27",
     "#5b2e26",
     "#51251e",
     "#5b261e",
     "#6d3229",
     "#703027",
-    "#6d2b21",
-    "#60231a",
-    "#491a13",
-    "#511911",
-    "#60190f",
-    "#591309",
-    "#491109",
-    "#601e15",
     "#6d4537",
     "#895746",
     "#845a4b",
     "#82584a",
     "#966858",
-    "#a07363",
     "#72493a",
     "#663e2f",
     "#593426",
@@ -534,9 +749,10 @@ brownList = [
     "#936727",
     "#895d1e",
     "#6b4611",
-    "#633c04"
+    "#633c04",
 ];
 pinkList = [
+    "#C58A98",
     "#f2c4e0",
     "#f7c0e2",
     "#efb6d9",
@@ -579,16 +795,32 @@ pinkList = [
     "#ce238b",
     "#ea96c9",
     "#dd85ba",
-    "#bf659b"
+    // "#c48b98"
 ];
+blackList = [
+    "#000000",
+    "#161616",
+    "#232222",
+    "#1c1919",
+    "#302e2e",
+    "#212020",
+    "#2d2a2a",
+    "#211e1e",
+    "#2d2c2c",
+    "#232323",
+    "#111010",
+    "#211e1e",
+    "#282323"
+    
+]
 colorDefinitions.forEach(element => {
     let cl = element.hue
     let content;
     if(cl === "white"){
-        content  = new Array(1).fill("#ffffff")
+        content  = whiteList;
     }
     else if(cl === "black"){
-        content  = new Array(1).fill("#000000")
+        content  = blackList;
     }
     else if(cl === "gray"){
         content  = hexglist;
@@ -607,6 +839,15 @@ colorDefinitions.forEach(element => {
     }
     else if(cl ==="pink"){
         content = pinkList;
+    }
+    else if(cl === "orange"){
+        content = orangeList;
+    }
+    else if(cl === "yellow"){
+        content = yellowList;
+    }
+    else if(cl === "mor"){
+        content = morList;
     }
     else{
         content = randomColor(element);
@@ -703,7 +944,7 @@ for(var i =0; i< 1; i++){
 
     let rgbColor = hexRgb(randomColor({hue: "random", count: 1})[0]);
     let tempTrain = [ rgbColor.red / 255, rgbColor.green / 255, rgbColor.blue / 255, rgbColor.alpha];
-    clr = [212, 142, 100]
+    clr = [49, 35, 37]
     let green = [clr[0]/255, clr[1]/255, clr[2]/255, 1]
     console.log("NN Answer");
     console.log(myNetwork.activate(green));
@@ -722,6 +963,7 @@ mapColor = function(initialColors){
 
         return myNetwork.activate(element2);
     });
+    
     filteredcode = codes.map(element=>{
         return rgbList[indexOfMax(element)]
     });
@@ -729,6 +971,8 @@ mapColor = function(initialColors){
     const distinct = (value, index, self) => {
         return self.indexOf(value) === index;
     }
+    //
+    dClump = filteredcode.map()
     dFiltered = filteredcode.filter(distinct);
     
     return dFiltered;

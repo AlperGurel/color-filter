@@ -55,8 +55,8 @@ io.sockets.on('connection',  (socket) => {
                     return item[3] > 0.01;
                 }))
                 let map2_ = aiRouter.mapColor(img.filter((item)=>{
-                    return item[3] > 0.005;
-                    // return 1
+                    // return item[3] > 0.05;
+                    return 1
                 }));
 
                 mappedStats.push(map2_);
