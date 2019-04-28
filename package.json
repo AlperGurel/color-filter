@@ -11,6 +11,7 @@
     "hex-rgb": "^4.1.0",
     "hex-to-hsl": "^1.0.2",
     "randomcolor": "^0.5.4",
+    "rgb-hex": "^3.0.0",
     "rgb-to-hsl": "0.0.3",
     "socket.io": "^2.2.0",
     "synaptic": "^1.1.4"

@@ -2,6 +2,7 @@
 const express = require("express");
 const path = require("path");
 const colorMap = require("./public/mapColor")
+
 //getcolors is the current color extracting library
 // Require library
 var excel = require('excel4node');
@@ -32,6 +33,7 @@ io.sockets.on('connection',  (socket) => {
     let length;
     let stats = [] //this will hold all loaded images
     let mappedStats = [] //this will hold all mapped images
+    let aiStats = []
     let excelStats = []
     let excelNames = []
     socket.on("init", (data)=>{
@@ -52,9 +54,18 @@ io.sockets.on('connection',  (socket) => {
                 let map_ = colorMap.mapColor(img.filter((item)=>{
                     return item[3] > 0.01;
                 }))
-                mappedStats.push(map_);
+                let map2_ = aiRouter.mapColor(img.filter((item)=>{
+                    return item[3] > 0.01;
+                    // return 1
+                }));
+
+                mappedStats.push(map2_);
+                //aiStats.push(map2_)
+
             });
-            socket.emit("modStats", mappedStats);
+
+            // socket.emit("modStats", mappedStats);
+            socket.emit("aiStats", mappedStats);
             mappedStats.forEach((item, index) => {
                 excelStats.push(item);
             });

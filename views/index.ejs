@@ -118,7 +118,7 @@
 <script>
 	socket = io({transports: ['websocket'], upgrade: false}).connect();
 
-	socket.on("modStats", (data) => {
+	socket.on("aiStats", (data) => {
 		let sv = document.getElementsByClassName("saveExist");
 		if(sv.length == 0){
 			downloadButton = document.createElement("div");
@@ -153,6 +153,7 @@
 		}
 		
 	})
+	
 
 	var width, height, previewHeight;
 	var root = document.getElementById('demo');
