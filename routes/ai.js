@@ -957,24 +957,59 @@ for(var i =0; i< 1; i++){
 
 mapColor = function(initialColors){
     clrs = [[]]
+    console.log("initial colors")
     console.log(initialColors);
     const codes = initialColors.map(element => {
         let element2 = [ element[0]/ 255, element[1] / 255, element[2] / 255, 1];
 
         return myNetwork.activate(element2);
     });
-    
+    // console.log("codes after network")
+    // console.log(codes);
     filteredcode = codes.map(element=>{
         return rgbList[indexOfMax(element)]
     });
+    console.log("mapped Colors")
     console.log(filteredcode);
     const distinct = (value, index, self) => {
         return self.indexOf(value) === index;
     }
-    //
-    dClump = filteredcode.map()
-    dFiltered = filteredcode.filter(distinct);
+
+    finalcode = [];
+    initialColors.forEach((element, ind) => {
+        finalcode.push([filteredcode[ind][0], filteredcode[ind][1], filteredcode[ind][2], element[3]]);
+    })
+
+    sums = new Array(rgbList.length).fill(0);
     
+    for(let i=0; i<rgbList.length; i++){
+        for(let j=0; j<finalcode.length; j++){
+            if(finalcode[j][0]===rgbList[i][0] && finalcode[j][1]===rgbList[i][1] && finalcode[j][2] == rgbList[i][2]){
+                sums[i] += finalcode[j][3]
+            }
+        }
+    }
+
+    console.log(sums);
+    sumObj = sums.map((element,index)=>{
+        let ind = rgbList[index]
+        return {element: element, color: ind}
+    })
+    sums = sumObj.filter((element)=>{
+        return element.element>0.05;
+    })
+    console.log("final sums")
+    console.log(sums)
+
+    //
+    console.log("mapped colors with alphas")
+    console.log(finalcode);
+    // dClump = filteredcode.map()
+    //dFiltered = filteredcode.filter(distinct);
+    dFiltered = sums.map(element=>{
+       return element.color;
+    })
+    console.log(dFiltered);
     return dFiltered;
 }
 
