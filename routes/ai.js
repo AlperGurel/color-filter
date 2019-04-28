@@ -40,7 +40,7 @@ hexglist = grayList.map(element=>{
 
     return "#"+rgbHex(...element);
 })
-
+const RATIO = 0.02;
 
 const COLORCOUNT = 50;
 const rgbList = [
@@ -953,27 +953,21 @@ for(var i =0; i< 1; i++){
 }
 
 
-
-
 mapColor = function(initialColors){
     clrs = [[]]
-    console.log("initial colors")
-    console.log(initialColors);
     const codes = initialColors.map(element => {
         let element2 = [ element[0]/ 255, element[1] / 255, element[2] / 255, 1];
 
         return myNetwork.activate(element2);
     });
-    // console.log("codes after network")
-    // console.log(codes);
+
     filteredcode = codes.map(element=>{
         return rgbList[indexOfMax(element)]
     });
-    console.log("mapped Colors")
-    console.log(filteredcode);
-    const distinct = (value, index, self) => {
-        return self.indexOf(value) === index;
-    }
+
+    // const distinct = (value, index, self) => {
+    //     return self.indexOf(value) === index;
+    // }
 
     finalcode = [];
     initialColors.forEach((element, ind) => {
@@ -990,26 +984,17 @@ mapColor = function(initialColors){
         }
     }
 
-    console.log(sums);
     sumObj = sums.map((element,index)=>{
         let ind = rgbList[index]
         return {element: element, color: ind}
     })
     sums = sumObj.filter((element)=>{
-        return element.element>0.05;
+        return element.element>RATIO;
     })
-    console.log("final sums")
-    console.log(sums)
 
-    //
-    console.log("mapped colors with alphas")
-    console.log(finalcode);
-    // dClump = filteredcode.map()
-    //dFiltered = filteredcode.filter(distinct);
     dFiltered = sums.map(element=>{
        return element.color;
     })
-    console.log(dFiltered);
     return dFiltered;
 }
 
