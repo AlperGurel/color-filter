@@ -703,7 +703,7 @@ for(var i =0; i< 1; i++){
 
     let rgbColor = hexRgb(randomColor({hue: "random", count: 1})[0]);
     let tempTrain = [ rgbColor.red / 255, rgbColor.green / 255, rgbColor.blue / 255, rgbColor.alpha];
-    clr = [140, 46, 15]
+    clr = [212, 142, 100]
     let green = [clr[0]/255, clr[1]/255, clr[2]/255, 1]
     console.log("NN Answer");
     console.log(myNetwork.activate(green));

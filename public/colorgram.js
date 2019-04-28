@@ -46,16 +46,21 @@ var Colorgram;
         // 4 is RGB + Count
         var samples = new Uint32Array(cubes * 4);
         for (var i = 0; i < img.data.length; i += img.channels) {
-            var h = hsl(img.data[i], img.data[i + 1], img.data[i + 2]);
-            /* tslint:disable:no-bitwise */
-            var v = ((~~(img.data[i] * 0.2126 + img.data[i + 1] * 0.7152 + img.data[i + 2] * 0.0722) & mask) << shiftM) + (((h[0]) & mask) << shiftH) + (((h[2]) & mask) << shiftL) + ((img.data[i] & mask) << shiftR) + ((img.data[i + 1] & mask) << shiftG) + ((img.data[i + 2] & mask << shiftB));
-            /* tslint:enable:no-bitwise */
-            // 4 is RGB + Count
-            v *= 4;
-            samples[v++] += img.data[i];
-            samples[v++] += img.data[i + 1];
-            samples[v++] += img.data[i + 2];
-            samples[v]++;
+            if(img.data[i] != 255 && img.data[i+1]!=255 && img.data[i+2]!=255){
+                if(img.data[i] != 0 && img.data[i+1]!=0 && img.data[i+2]!=0){
+                    var h = hsl(img.data[i], img.data[i + 1], img.data[i + 2]);
+                    /* tslint:disable:no-bitwise */
+                    var v = ((~~(img.data[i] * 0.2126 + img.data[i + 1] * 0.7152 + img.data[i + 2] * 0.0722) & mask) << shiftM) + (((h[0]) & mask) << shiftH) + (((h[2]) & mask) << shiftL) + ((img.data[i] & mask) << shiftR) + ((img.data[i + 1] & mask) << shiftG) + ((img.data[i + 2] & mask << shiftB));
+                    /* tslint:enable:no-bitwise */
+                    // 4 is RGB + Count
+                    v *= 4;
+                    samples[v++] += img.data[i];
+                    samples[v++] += img.data[i + 1];
+                    samples[v++] += img.data[i + 2];
+                    samples[v]++;
+                }
+            }
+            
         }
         return samples;
     }
