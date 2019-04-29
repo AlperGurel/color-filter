@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <div class="login-page">
+        <div class="form">
+          <form id="register-form" class="register-form" action="/" method="post" >
+            <input name="username" id="username" type="text" placeholder="name"/>
+            <input name="password" id="password" type="password" placeholder="password"/>
+            <input name="passwordConf" id="passwordConf" type="password" placeholder="re-enter password"/>
+            <input name="email" id="email" type="text" placeholder="email address"/>
+            <input class="button"type="submit" value="REGISTER">           
+             <p class="message">Already registered? <a id="showLogin" href="#">Sign In</a></p>
+          </form>
+          <form id="login-form" class="login-form" action="/" method="post" target="_blank">
+            <input name="logemail" id="l_email" type="text" placeholder="email"/>
+            <input name="logpassword" id="l_password" type="password" placeholder="password"/>
+            <input class="button" type="submit" value="LOGIN">
+            <p class="message">Not registered? <a id="showCreate" href="#">Create an account</a></p>
+          </form>
+        </div>
+      </div>
+</body>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+  
+<script src="js/login.js"></script>
+</html>

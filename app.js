@@ -2,6 +2,24 @@
 const express = require("express");
 const path = require("path");
 const colorMap = require("./public/mapColor")
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+
+//connect to MongoDB
+//this code is handling db creation if there is none
+mongoose.connect('mongodb://localhost/testForAuth');
+var db = mongoose.connection;
+
+//handle mongo error
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+  // we're connected!
+  console.log("wer are are connected")
+});
+
+
 
 //getcolors is the current color extracting library
 // Require library
@@ -9,12 +27,28 @@ var excel = require('excel4node');
 
 const indexRouter = require("./routes/index");
 const aiRouter = require("./routes/ai");
+const loginRouter = require("./routes/login")
 
 const port = 3000;
 const app = new express();
 const server = require("http").Server(app);
 let io = require('socket.io')(server);
 
+
+//use sessions for tracking logins
+app.use(session({
+    secret: 'work hard',
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+      mongooseConnection: db
+    })
+  }));
+
+  // parse incoming requests
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+  
 app.set("view engine", "ejs");
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -25,6 +59,25 @@ app.use(express.static(path.join(__dirname, "node_modules")));
 //use it with a blank slash and routers
 app.use("/", indexRouter);
 app.use("/", aiRouter);
+app.use("/", loginRouter);
+
+
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+    var err = new Error('File Not Found');
+    err.status = 404;
+    next(err);
+  });
+
+
+// error handler
+// define as the last app.use callback
+app.use(function (err, req, res, next) {
+    res.status(err.status || 500);
+    res.send(err.message);
+    //res.redirect("/color")
+  });
+
 
 server.listen(port, () => console.log(`Port is running on port ${port}`));
 
