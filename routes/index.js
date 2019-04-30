@@ -20,6 +20,6 @@ function requiresLogin(req, res, next) {
     //   var err = new Error('You must be logged in to view this page.');
     //   err.status = 401;
     //   return next(err);
-    res.redirect("/");
+    res.redirect( "/");
     }
   }

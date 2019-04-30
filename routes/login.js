@@ -26,7 +26,7 @@ router.get('/',  function (req, res, next) {
       err.status = 400;
       // res.send("passwords dont match");
       // return next(err);
-      return res.redirect("/")
+      return res.send(err)
     }
   
     if (req.body.email &&
@@ -46,7 +46,7 @@ router.get('/',  function (req, res, next) {
         } else {
           req.session.userId = user._id;
           console.log("burada redirect etmeli");
-          return res.redirect('/');
+          return res.redirect('/color');
         }
       });
   
@@ -57,18 +57,27 @@ router.get('/',  function (req, res, next) {
           var err = new Error('Wrong email or password.');
           err.status = 401;
           // return next(err);
-          return res.redirect("/")
+          return res.send(err)
         } else {
           req.session.userId = user._id;
           console.log("after auth init funciton")
-           return res.redirect('/color');
+          return res.redirect('/color');
         }
       });
     } else {
       var err = new Error('All fields required.');
-      err.status = 400;
-      // return next(err);
-      res.redirect("/")
+      err.status = 402;
+      //return next(err);
+      // res.redirect(200, "/")
+      res.send(err)
+    
+      //return res.json({status: "All fields required", redirect: '/'});
+      // res.response("response")
+      //return res.redirect("/")
+      // console.log("all fields required")
+      // res.render("login", {
+      //   message: "All fields required."
+      // })
     }
   })
   

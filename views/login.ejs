@@ -5,23 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="css/login.css">
+    <style>
+    .show{
+      cursor : pointer;
+    }
+    </style>
 </head>
 <body>
     <div class="login-page">
         <div class="form">
-          <form id="register-form" class="register-form" action="/" method="post" >
+          <!-- <form id="register-form" class="register-form" action="/" method="post" > -->
+            <form id="register-form" class="register-form">
             <input name="username" id="username" type="text" placeholder="name"/>
             <input name="password" id="password" type="password" placeholder="password"/>
             <input name="passwordConf" id="passwordConf" type="password" placeholder="re-enter password"/>
+            
             <input name="email" id="email" type="text" placeholder="email address"/>
-            <input class="button"type="submit" value="REGISTER">           
-             <p class="message">Already registered? <a id="showLogin" href="#">Sign In</a></p>
+            <div id="registerMessageReturn"></div>
+            <input id="register" class="button"type="submit" value="REGISTER">           
+             <p class="message">Already registered? <a class="show" id="showLogin" href="">Sign In</a></p>
+             <!-- <p class="message">Already registered? <p id="showLogin">Sign In</a></p> -->
           </form>
-          <form id="login-form" class="login-form" action="/" method="post" target="_blank">
+          <!-- <form id="login-form" class="login-form" action="/" method="post" target="_blank"> -->
+          <form id="login-form" class="login-form">
             <input name="logemail" id="l_email" type="text" placeholder="email"/>
             <input name="logpassword" id="l_password" type="password" placeholder="password"/>
-            <input class="button" type="submit" value="LOGIN">
-            <p class="message">Not registered? <a id="showCreate" href="#">Create an account</a></p>
+            <div id="messageReturn"></div>
+            <input class="button" type="submit" value="LOGIN"  id="login">
+            <p class="message">Not registered? <a class="show" id="showCreate">Create an account</a></p>
+            <!-- <p class="message">Not registered? <p id="showCreate">Create an account</a></p> -->
+
           </form>
         </div>
       </div>
@@ -29,6 +42,7 @@
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+  <script src="/js/jquery.form.min.js"></script>
   
 <script src="js/login.js"></script>
 </html>
