@@ -14,7 +14,7 @@
     "get-image-colors": "^2.0.0",
     "hex-rgb": "^4.1.0",
     "hex-to-hsl": "^1.0.2",
-    "mongoose": "^5.5.4",
+    "mongoose": "^5.7.5",
     "randomcolor": "^0.5.4",
     "rgb-hex": "^3.0.0",
     "rgb-to-hsl": "0.0.3",
